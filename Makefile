@@ -11,6 +11,8 @@ run: cpp/main rust/main go/main data.csv
 	@$(time) python3 python3/main.py
 	@echo === Node.js ===
 	@$(time) node nodejs/main.js
+	@echo === Deno ===
+	@$(time) deno run -A deno/main.js
 
 cpp/%: cpp/%.cpp
 	g++ -O3 -o $@ $<
