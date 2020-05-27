@@ -9,9 +9,9 @@ import (
 	"strings"
 )
 
-func f64(s string) float64 {
-	n, _ := strconv.ParseFloat(s, 64)
-	return n
+func f64(s string) (n float64) {
+	n, _ = strconv.ParseFloat(s, 64)
+	return
 }
 
 func main() {
@@ -19,6 +19,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	defer file.Close()
 
 	x := 0.0
 	y := 0.0
@@ -35,6 +36,4 @@ func main() {
 	}
 
 	fmt.Println(x, y, z)
-
-	file.Close()
 }
