@@ -1,17 +1,17 @@
-time := time -f "%E real, %U user, %S sys, %K amem, %M mmem"
+time := time -f "%E real, %U user, %S sys, %P cpu, %Mk mem"
 
 run: cpp/main rust/main go/main data.csv
-	@echo === C++ ===
+	@echo '- C++'
 	@$(time) ./cpp/main
-	@echo === Rust ===
+	@echo '- Rust'
 	@$(time) ./rust/main
-	@echo === Go ===
+	@echo '- Go'
 	@$(time) ./go/main
-	@echo === Python3 ===
+	@echo '- Python3'
 	@$(time) python3 python3/main.py
-	@echo === Node.js ===
+	@echo '- Node.js'
 	@$(time) node nodejs/main.js
-	@echo === Deno ===
+	@echo '- Deno'
 	@$(time) deno run -A deno/main.js
 
 cpp/%: cpp/%.cpp
@@ -23,5 +23,5 @@ rust/%: rust/%.rs
 go/%: go/%.go
 	go build -o $@ $<
 
-data.csv: data.py
+%.csv: %.py
 	python3 $<
